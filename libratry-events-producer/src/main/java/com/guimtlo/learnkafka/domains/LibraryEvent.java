@@ -1,6 +1,7 @@
 package com.guimtlo.learnkafka.domains;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.guimtlo.learnkafka.domains.enums.TypeEvent;
 import lombok.*;
 
 import java.io.Serializable;
@@ -19,4 +20,7 @@ public class LibraryEvent implements Serializable {
 
     @JsonProperty("book")
     private Book book;
+
+    @JsonProperty("type_event")
+    private TypeEvent typeEvent;
 }

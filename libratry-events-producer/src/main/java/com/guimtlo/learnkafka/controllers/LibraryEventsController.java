@@ -2,6 +2,7 @@ package com.guimtlo.learnkafka.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.guimtlo.learnkafka.domains.LibraryEvent;
+import com.guimtlo.learnkafka.domains.enums.TypeEvent;
 import com.guimtlo.learnkafka.producer.LibraryEventProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,8 @@ public class LibraryEventsController {
 
     @PostMapping
     public ResponseEntity<LibraryEvent> postLibraryEvent(@RequestBody LibraryEvent libraryEvent) throws JsonProcessingException {
-        producer.sendLibraryEvent(libraryEvent);
+        libraryEvent.setTypeEvent(TypeEvent.NEW);
+        producer.sendLibraryEventApproach(libraryEvent);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(libraryEvent);
     }
